@@ -7,7 +7,6 @@
 <table id="student" class="table table-hover">
   <thead>
     <tr>
-      <th><input type="checkbox" id="selectall"/></th>
       <th>Student Code</th>
       <th>Student Name</th>
       <th>Course</th>
@@ -31,7 +30,6 @@
     
     <% @students.each do |student| %>
       <tr>
-        <td><%= check_box_tag "student_id[]", student.id %></td>
         <td><%= student.code %></td>
         <td><%= student.name %></td>
         <td><%= student.course.name %></td>
