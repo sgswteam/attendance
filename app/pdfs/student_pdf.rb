@@ -6,6 +6,7 @@ class StudentPdf < Prawn::Document
       header
       student_name
       signature
+      code
     end
     def header
       text 'SOFT GUIDE COMPUTER TRAINING CERTER', size: 11, style: :bold, align: :center
@@ -31,5 +32,8 @@ class StudentPdf < Prawn::Document
       text_box 'Aung Than Nyunt, B.E (Mech:)', :at => [bounds.width - 150, bounds.top - 490], :width => 150, size: 10;
       text_box 'Managing Director', :at => [bounds.width - 150, bounds.top - 500], :width => 100, size: 10;
       text_box "Date of Issue   #{DateTime.now.strftime("%d %b %Y")}", :at => [bounds.width - 150, bounds.top - 520], :width => 150, size: 8;
+    end
+    def code
+      text_box " #{rand(999).to_s(16).upcase}#{@student.id.to_s(16).upcase}#{rand(999).to_s(16).upcase}#{@student.code}", :at => [bounds.width - 150, bounds.top - 530], :width => 150, size: 8;
     end
   end
