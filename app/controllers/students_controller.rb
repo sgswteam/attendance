@@ -1,9 +1,7 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
-  # GET /students
-  # GET /students.json
+ 
   def index
     if current_user.admin?
       if params[:user_id]
@@ -29,8 +27,6 @@ class StudentsController < ApplicationController
     redirect_to students_url, :notice => 'Selected student are deleted successfully!'
   end
 
-  # GET /students/1
-  # GET /students/1.json
   def show
     @student = Student.find(params[:id])
     if current_user.admin?
@@ -50,17 +46,13 @@ class StudentsController < ApplicationController
     end
   end
 
-  # GET /students/new
   def new
     @student = current_user.students.build(status: 'imcomplete')
   end
 
-  # GET /students/1/edit
   def edit
   end
 
-  # POST /students
-  # POST /students.json
   def create
     @student = current_user.students.build(student_params)
     @student.status = 'imcomplete'
@@ -75,8 +67,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /students/1
-  # PATCH/PUT /students/1.json
   def update
     respond_to do |format|
       if @student.update(student_params)
@@ -89,8 +79,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  # DELETE /students/1
-  # DELETE /students/1.json
   def destroy
     @student.destroy
     respond_to do |format|
@@ -100,21 +88,11 @@ class StudentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:code, :name, :course_id, :user_id)
-    end
-    #add sortable format
-    def sort_column
-      Student.column_names.include?(params[:sort]) ? params[:sort] : "name"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

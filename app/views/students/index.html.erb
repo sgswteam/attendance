@@ -13,9 +13,9 @@
       <th>Created Time</th>
       <th>Updated Time</th>
       
-      <th>
+      <th style="width: 150px;">
         <%= form_tag students_path, :method => 'get', :id => "user_select" do %>
-          <%= select_tag :user_id, options_from_collection_for_select(User.all, 'id', 'name'), id: "user_select", onchange: 'this.form.submit();', prompt: "User" %>
+          <%= select_tag :user_id, options_from_collection_for_select(User.all, 'id', 'name'), id: "user_select", onchange: 'this.form.submit();', prompt: " " %>
         <% end %>
       </th>
       <th>Status</th>
@@ -46,7 +46,9 @@
 </table>
 <%= javascript_tag do %>
   $(document).ready(function() {
-    $('#student').dataTable();
+    $('#student').dataTable({
+      "ordering": false
+    });
 } );
 <% end %>
 

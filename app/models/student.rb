@@ -15,9 +15,9 @@ class Student < ApplicationRecord
     #simple search form
     def self.search(search)
         if search.present? 
-            where('user_id = ?', search)
+            where('user_id = ?', search).order(created_at: :desc)
         else
-            all   
+            all.order(created_at: :desc)
         end
     end
 
