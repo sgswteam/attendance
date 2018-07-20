@@ -30,7 +30,7 @@ class StudentPdf < Prawn::Document
     end
     def signature
       text_box 'Aung Than Nyunt, B.E (Mech:)', :at => [bounds.width - 150, bounds.top - 490], :width => 150, size: 10;
-      text_box 'Managing Director', :at => [bounds.width - 150, bounds.top - 500], :width => 100, size: 10;
+      text_box 'Founder and Principal', :at => [bounds.width - 150, bounds.top - 500], :width => 100, size: 10;
       text_box "Date of Issue   #{DateTime.now.strftime("%d %b %Y")}", :at => [bounds.width - 150, bounds.top - 520], :width => 150, size: 8;
     end
     def code
