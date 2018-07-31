@@ -9,9 +9,7 @@ class StudentPdf < Prawn::Document
       code
     end
     def header
-      text 'SOFT GUIDE COMPUTER TRAINING CERTER', size: 11, style: :bold, align: :center
-      move_down 10
-      styled_text '<div  style="text-align: center; size: 10;">A Recognized Centre of London Chamber of Commerce & Industry</div>'
+      styled_text '<div  style="text-align: center; size: 11;">A Recognized Centre of London Chamber of Commerce & Industry</div>'
       styled_text '<div style="text-align: center; size: 10;"> No.52, 19th St., Latha Tsp., Yangon. Tel: 382180</div>'
       styled_text '<div style="text-align: center; size: 10;"> E-mail: softguide.atn@gmail.com</div>'
       move_down 30
