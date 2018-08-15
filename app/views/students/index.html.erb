@@ -32,7 +32,7 @@
       <tr>
         <td><%= student.code %></td>
         <td><%= student.name %></td>
-        <td><%= student.course.name %></td>
+        <td><%= student.course.title %></td>
         <td> <%= student.created_at %></td>
         <td><%= student.updated_at%> </td>
         <td><%= student.user.name %></td>
@@ -47,7 +47,7 @@
 <%= javascript_tag do %>
   $(document).ready(function() {
     $('#student').dataTable({
-      "ordering": false
+      "order": [[4, "desc"]]
     });
 } );
 <% end %>

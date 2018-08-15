@@ -18,11 +18,11 @@ class StudentPdf < Prawn::Document
     def student_name
         styled_text '<div style="text-align: center; size: 10;">This is to certify that</div>'
         move_down 10
-        text " #{@student.name.upcase!}", size: 11, style: :bold, align: :center
+        text " #{@student.name.upcase}", size: 11, style: :bold, align: :center
         move_down 10
         styled_text '<div style="text-align: center; size: 10;">has satisfactorily completed the course in </div>' 
         move_down 10
-        text "<i><b>#{@student.course.name.upcase!}</b></i>", size: 12, align: :center, :inline_format => true
+        text "<i><b>#{@student.course.name.upcase}</b></i>", size: 12, align: :center, :inline_format => true
         move_down 10
         text " #{@student.course.description}", size: 10, align: :center
     end
