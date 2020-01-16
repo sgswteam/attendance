@@ -18,6 +18,17 @@ class StudentsController < ApplicationController
       render :user_index
     end
   end
+  
+  def course_data
+    if params[:user_id] == '1' 
+      @select_course = Course.all
+    else
+      @select_course = Course.where(user_id: params[:user_id])
+    end
+    respond_to do |format|
+      format.json { render json: @select_course }
+    end
+  end
 
   def print_selected
     params[:ids].each do |id|

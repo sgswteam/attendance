@@ -24,12 +24,19 @@
       </div>
 
       <div class="field">
-        <%= form.label :course %>
-        <% if current_user.admin? %>
-          <%= form.select :course_id, Course.all.map{ |c| [c.title, c.id]}, {:prompt => "select"}%>
-        <% else %>
-          <%= form.select :course_id, options_from_collection_for_select(current_user.courses.all, 'id', 'title'), id: "course_id" %>
-        <% end %>
+          <%= form.label :course %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= form.select :user_id, User.all.map{ |c| [c.name, c.id]}, {:prompt => "select"} , :id => "user_id" %>
+            </div>
+            <div class="col-md-6">
+            <% if current_user.admin? %>
+              <%= form.select :course_id, Course.all.map{ |c| [c.title, c.id]}, {:prompt => "select"} , :id => "course_id" %>
+            <% else %>
+              <%= form.select :course_id, options_from_collection_for_select(current_user.courses.all, 'id', 'title'), id: "course_id" %>
+            <% end %>
+            </div>
+          </div>
       </div>
 
       <div class="actions">
@@ -38,3 +45,22 @@
     <% end %>
   </div>
 </div>
+<script>
+$( document ).ready(function() {
+   $("#user_id").on("change",function(){
+      $.ajax({
+        type: 'GET',
+        url: 'students/course_data',
+        data: { user_id: $("#user_id").val()},
+        dataType: "json",
+        success: function(data){
+          $('#course_id > *').remove();
+          $('#course_id').append('<option value="">select</option>');
+          $.each(data,function(index, item){
+          $('#course_id').append('<option value="'+item.value+'">'+item.name+'</option>');
+          });
+        }
+      })
+   });
+});
+</script>

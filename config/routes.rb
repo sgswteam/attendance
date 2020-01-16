@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }, :path_prefix => 'd'
   resources :students do
     post :print_selected, :on => :collection
+    get :course_data
   end
   root 'students#index'
   match '/users',   to: 'users#index',   via: 'get'
