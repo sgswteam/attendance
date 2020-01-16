@@ -18,6 +18,17 @@ class StudentsController < ApplicationController
       render :user_index
     end
   end
+  
+  def course_data
+    if params[:user_id] == '1' 
+      @select_course = Course.all
+    else
+      @select_course = Course.where(user_id: params[:user_id])
+    end
+    respond_to do |format|
+      format.json { render json: @select_course }
+    end
+  end
 
   def print_selected
     params[:ids].each do |id|
@@ -54,7 +65,11 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = current_user.students.build(student_params)
+    if current_user.admin?
+      @student = Student.new(student_params)
+    else
+      @student = current_user.students.build(student_params)
+    end
     @student.status = 'imcomplete'
     respond_to do |format|
       if @student.save
