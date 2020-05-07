@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Courses</h1>
-<%= link_to 'New Course', new_course_path, class: "btn btn-primary"  %>
+<h1> Course List</h1>
+<%= link_to 'New Course', new_course_path, class: "btn btn-info btn-float tooltips"  %>
 <table class="table table-hover" id="courses">
   <thead>
     <tr>
@@ -24,9 +24,21 @@
         <td><%= course.title %></td>
         <td><%= course.description %></td>
         <td><%= course.user.name %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to course, :class => "btn btn-crud-action btn-xs tooltips" do %>
+            <i class="glyphicon glyphicon-list-alt"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_course_path(course), class: "btn btn-default btn btn-success" do %>
+            <i class="glyphicon glyphicon-edit"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn btn-danger" do %>
+            <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :themes do
+    put :update_theme
+  end
   get 'users/index'
   resources :courses
   devise_for :users, :controllers => { :registrations => "registrations" }, :path_prefix => 'd'

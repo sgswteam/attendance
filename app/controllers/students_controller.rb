@@ -74,7 +74,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         format.html { redirect_to students_url, notice: 'Student was successfully created.' }
-        format.json { render :show, status: :created, location: @student }
+        format.json { render :show, status: :created, location: students_url }
       else
         format.html { render :new }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -86,7 +86,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to students_url, notice: 'Student was successfully updated.' }
-        format.json { render :show, status: :ok, location: @student }
+        format.json { render :show, status: :ok, location: students_url }
       else
         format.html { render :edit }
         format.json { render json: @student.errors, status: :unprocessable_entity }

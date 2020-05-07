@@ -17,3 +17,5 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
+//= require jquery.minicolors
+//= require jquery.minicolors.simple_form
